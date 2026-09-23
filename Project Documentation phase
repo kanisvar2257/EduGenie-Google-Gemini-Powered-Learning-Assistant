@@ -1,1 +1,74 @@
+Here is a comprehensive template for the **Project Documentation Phase** of your EduGenie Learning Assistant. This structure ensures that both users and future developers can understand, install, and extend your Google Gemini-powered application.
 
+### 1. Project Overview
+
+Provide a clear, high-level summary of the repository and its pedagogical purpose.
+
+* **Project Name:** EduGenie – Google Gemini-Powered Learning Assistant
+* **Mission:** To provide a 24/7 personalized, multimodal Socratic tutor that guides students through complex topics without bypassing the learning process.
+* **Core Capabilities:** Multimodal doubt resolution (images, handwritten notes, PDFs), interactive language practice, automated quiz generation, and smart code debugging.
+
+### 2. API & Integration Reference
+
+Detail how the application connects to the AI infrastructure, as this is the core of your project.
+
+* **Google Gemini API:** Specify that the project utilizes the latest **Interactions API**, which is the standard interface for building conversational agents and managing complex multimodal workflows.
+* **Model Routing:**
+* `Gemini 3.8 Flash`: Documented as the primary model for low-latency conversational routing, text generation, and dynamic quiz creation.
+* `Gemini 3.1 Pro`: Documented for heavy multimodal tasks (e.g., parsing handwritten notes, complex diagrams, or large lecture PDFs).
+
+
+* **System Prompts & LearnLM Guardrails:** Document the core instructions injected into the context manager (e.g., *“Act as a Socratic tutor. Do not provide direct answers. Ask guiding questions to help the student arrive at the solution.”*) to enforce educational safety.
+
+### 3. Setup & Installation Guide
+
+Provide step-by-step instructions so evaluators or other developers can clone and run the system locally.
+
+* **Prerequisites:** List required software (e.g., Node.js v20+, Python 3.12+, Git).
+* **Environment Variables:** Document the required `.env` structure without exposing actual credentials:
+```text
+GEMINI_API_KEY=your_google_ai_studio_key
+DATABASE_URI=your_db_connection_string
+PORT=3000
+
+```
+
+
+* **Installation Steps:**
+1. Clone the repository: `git clone [https://github.com/kanisvar2257/EduGenie-Learning-Assistant.git](https://github.com/kanisvar2257/EduGenie-Learning-Assistant.git)`
+2. Navigate to the backend/frontend directories and install dependencies (e.g., `npm install` or `pip install -r requirements.txt`).
+3. Start the development server (e.g., `npm run dev`).
+
+
+
+### 4. Developer Guide & Architecture
+
+Explain the internal workings for anyone contributing to the codebase.
+
+* **System Architecture:** Briefly recap the client-server boundary (Frontend UI ↔ API Gateway ↔ Gemini Interactions API).
+* **File Handling Workflow:** Document how uploaded files (images/PDFs) are temporarily stored, encoded, and passed to the Gemini multimodal endpoints before being purged for privacy.
+* **State Management:** Explain how conversation history is maintained (e.g., session IDs in MongoDB) to give the AI long-term context during a study session.
+
+### 5. User Manual
+
+A brief operational guide for the end-user (students).
+
+* **Starting a Session:** How to log in and initiate a new subject thread.
+* **Uploading Context:** Instructions on supported formats for uploading syllabus PDFs, coding screenshots, or whiteboard images.
+* **Using the Code Explainer:** How to paste C/C++ or HTML snippets and ask the AI for syntax highlighting and step-by-step debugging.
+
+### 6. Testing & Quality Assurance
+
+Summarize the testing protocols used to validate the application.
+
+* **Prompt Injection Testing:** Document how you test the system to ensure users cannot manipulate the AI into giving direct answers for assignments.
+* **Multimodal Accuracy:** Notes on how image extraction and PDF parsing were evaluated.
+* **Error Handling:** How the UI responds if the Gemini API hits a rate limit or if a file is too large to process.
+
+### 7. Future Enhancements
+
+List planned features to show the project's roadmap.
+
+* Integration with Google Calendar for automated study reminders.
+* Voice-to-text integration for hands-free language fluency practice.
+* Offline fallback modes for basic flashcard review.
