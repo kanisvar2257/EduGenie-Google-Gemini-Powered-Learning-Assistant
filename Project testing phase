@@ -1,1 +1,48 @@
+### 1. Quality Assurance Strategy & Objectives
 
+Define the overarching goals for validating the EduGenie application before release.
+
+* **Objective:** Ensure the platform reliably handles conversational text, multimodal file inputs, and strict educational guardrails without performance degradation or application crashes.
+* **Success Metrics:** Achieve a high success rate in prompt injection defense, maintain low latency for real-time text streaming, and ensure accurate context extraction from uploaded images and PDFs [1].
+* **Testing Scope:** Encompasses unit testing for core logic, integration testing for the API Gateway, and AI-specific evaluation strategies for the Gemini models [1].
+
+### 2. AI & Multimodal Model Testing
+
+Establish specific testing protocols for the Google Gemini API to validate its performance, accuracy, and adherence to the system prompts [1].
+
+* **Context & Persona Retention:** Verify that the AI maintains its Socratic tutor persona across lengthy sessions, particularly during interactive English communication and grammar practice.
+* **Image Parsing Accuracy:** Validate Gemini 3.1 Pro's ability to interpret diverse visual inputs, such as extracting handwritten C++ Object-Oriented Programming logic or identifying specific design constraints from uploaded 3:4 vertical vector portraits.
+* **Subject Matter Breadth:** Evaluate response accuracy across highly distinct domains to prevent model hallucinations. Test cases should cover both technical domains (e.g., C program debugging) and specialized humanities (e.g., structural breakdowns of classical Tamil literature like *Natrinai* or *Kuruntokai*).
+* **Continuous Monitoring:** Implement automated workflows to periodically evaluate the AI's output against a baseline, monitoring for model drift or unexpected shifts in the tutor's tone over time [1].
+
+### 3. Core Functional & Integration Testing
+
+Document the traditional software testing methodologies applied to the client-server architecture.
+
+* **Frontend UI/UX:** Test cross-browser compatibility, responsive design for mobile views, and the accurate rendering of dynamic Markdown and LaTeX formatting in the chat window.
+* **Backend Endpoints:** Use API testing tools (e.g., Postman) to validate the expected request/response formats for all server routes, ensuring robust error handling for timeouts or unauthorized access.
+* **Database Integration:** Verify that user session states, chat histories, and academic preferences are accurately written to and retrieved from the database.
+
+### 4. Security & Guardrail Validation
+
+Ensure the application is secure against malicious inputs and protects user data.
+
+* **Adversarial Prompting (Red Teaming):** Actively attempt to bypass the LearnLM system instructions. Test cases should include trying to trick the AI into generating a complete essay on R.K. Narayan's "Engine Trouble" instead of providing the required step-by-step analytical guidance [1].
+* **File Upload Security:** Validate that the system correctly rejects unsupported file types, strictly enforces file size limits, and successfully purges uploaded study materials from the temporary cloud bucket after processing to maintain privacy.
+* **Authentication Validation:** Confirm that JSON Web Tokens (JWT) or OAuth sessions expire correctly and that users cannot access or view chat sessions belonging to other accounts.
+
+### 5. Performance & Edge Case Handling
+
+Identify how the system behaves under stress or when encountering unexpected user behaviors.
+
+* **Rate Limiting & Retries:** Simulate high-frequency requests to ensure the API Gateway gracefully triggers rate limits and that the frontend displays appropriate, user-friendly error messages rather than crashing.
+* **Edge Case Inputs:** Feed the AI misspelled queries, highly ambiguous questions, or extremely complex, dense technical documentation to evaluate its error-handling and clarification prompts [1].
+* **Load Testing:** Send concurrent requests to the backend to ensure the server and the database connection pool can handle multiple active study sessions simultaneously.
+
+### 6. User Acceptance Testing (UAT)
+
+Plan the final phase of testing involving real users to validate the platform's effectiveness.
+
+* **Beta Deployment:** Roll out the Minimum Viable Product (MVP) to a controlled group of users to navigate the application organically.
+* **Feedback Collection:** Gather qualitative data on the clarity of the AI's explanations, the intuitiveness of the UI, and the usefulness of the generated study planners.
+* **Pre-Exam Stress Test:** Target UAT deployment prior to major academic milestones (e.g., first-year practical examinations) to ensure the platform handles the specific, time-sensitive demands of intense study and revision periods.
