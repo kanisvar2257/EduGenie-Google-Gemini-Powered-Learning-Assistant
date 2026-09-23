@@ -1,1 +1,33 @@
+## 1. Project Scope & Objectives
 
+Define exactly what the EduGenie project will and will not deliver during its initial release.
+
+* **Objectives:** Build a fully functional, Gemini-powered educational assistant capable of processing text, code, and images to provide Socratic-style tutoring for subjects ranging from C/C++ programming to classical Tamil literature.
+* **In-Scope (MVP):** Text-based conversational memory, multimodal file uploads (PDF/images), basic user authentication, and system prompt guardrails.
+* **Out-of-Scope (MVP):** Real-time voice interaction, native mobile apps, and complex user-to-user social networking features.
+
+## 2. Resource Allocation & Budgeting
+
+Outline the required tools, hosting environments, and anticipated API usage costs.
+
+* **API Budgeting:** Estimate the token usage for the Google Gemini API (e.g., allocating a monthly budget for Gemini Flash vs. Pro based on anticipated multimodal user load).
+* **Infrastructure:** Plan for free-tier or scalable hosting solutions (e.g., Vercel for frontend, Render for backend, MongoDB Atlas for the database).
+* **Time Management:** Outline the core time allocation, ensuring the project schedule comfortably accommodates ongoing first-year BSc CS coursework and upcoming practical exams.
+
+## 3. Work Breakdown Structure & Scheduling
+
+Divide the development lifecycle into trackable, actionable phases and establish the operating model for tracking daily progress.
+
+* **Milestone 1 (Foundation):** Repository initialization, CI/CD pipeline setup, and database provisioning.
+* **Milestone 2 (Core Chat):** Building the UI and integrating the basic Gemini API to handle text-based queries, including coding syntax checks and English speaking/grammar assistance.
+* **Milestone 3 (Multimodal):** Implementing the file handling pipeline for processing PDF/Image uploads, such as handwritten diagrams or extensive lecture slides.
+* **Milestone 4 (Security):** Finalizing the system prompts, prompt injection mitigation, and secure user authentication.
+* **Agile Tracking:** Use Kanban boards (e.g., GitHub Projects) to manage tasks in 2-week sprints to organize deliverables and prevent delays.
+
+## 4. Risk Management & Mitigation
+
+Identify potential roadblocks before they occur and establish contingency plans.
+
+* **API Rate Limiting:** *Mitigation:* Implement caching for repeated queries and build robust error handling and retry logic in the backend.
+* **Prompt Injection:** *Mitigation:* Use strict system-level instructions and evaluate user prompts against safety filters to ensure the AI maintains its role as a tutor rather than directly solving assignments.
+* **Scope Creep:** *Mitigation:* Strictly adhere to the documented MVP scope boundaries and push all new feature requests to a post-launch backlog to avoid stretching resources.
