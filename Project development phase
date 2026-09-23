@@ -1,1 +1,72 @@
+Here is a comprehensive and structured outline for the **Project Development Phase** of your EduGenie project. You can use this document to track your implementation progress, structure your sprints, and define your coding standards for your GitHub repository.
 
+### 1. Environment Setup & Initialization
+
+Define the foundational steps required to kick off the coding process and configure the development environment.
+
+* **Repository Initialization:** Set up the Git repository (`kanisvar2257/EduGenie-Google-Gemini-Powered-Learning-Assistant`), initialize the `.gitignore` for node modules or python cache, and create the basic folder structure (e.g., `/frontend`, `/backend`, `/docs`).
+* **Dependency Management:** Create the `package.json` (Node.js) or `requirements.txt` (Python) to lock down framework and library versions.
+* **API Configuration:** Provision the Google Gemini API key via Google AI Studio and configure the secure `.env` files in the backend.
+* **Database Provisioning:** Set up the development database cluster (e.g., MongoDB Atlas or Firebase) and establish connection pooling in the backend backend.
+
+### 2. Sprint Planning & Milestones
+
+Break down the development process into manageable phases or sprints to ensure steady progress.
+
+* **Sprint 1: Core Architecture & UI Boilerplate (Weeks 1-2)**
+* Develop the frontend landing page and dashboard routing.
+* Set up the backend server and basic API endpoints (health checks, user auth).
+
+
+* **Sprint 2: Conversational AI Integration (Weeks 3-4)**
+* Integrate the Gemini Interactions API for text-to-text chat capabilities.
+* Implement the context manager to maintain chat history and system prompts (the Socratic tutor guardrails).
+
+
+* **Sprint 3: Multimodal Features & Document Parsing (Weeks 5-6)**
+* Develop the file upload components on the frontend.
+* Implement logic to pass images and PDFs to Gemini 3.1 Pro for analysis, debugging, and summarization.
+
+
+* **Sprint 4: Refinement, UI Polish, & Testing (Weeks 7-8)**
+* Implement dynamic markdown and LaTeX rendering on the frontend for math and code blocks.
+* Conduct end-to-end testing, error handling, and prompt injection mitigation.
+
+
+
+### 3. Feature Implementation Specifications
+
+Document the technical logic for building your core features.
+
+* **Authentication Flow:** Implement JWT (JSON Web Tokens) or OAuth 2.0 to manage user sessions and secure API endpoints.
+* **The Chat Engine (Frontend ↔ Backend):**
+* Use WebSockets or Server-Sent Events (SSE) to stream Gemini's responses back to the UI in real-time, matching the experience of modern AI chatbots.
+
+
+* **File Processing Pipeline:**
+* Define the logic for receiving a file upload, converting the file to Base64 (or temporarily storing it), constructing the multimodal prompt array, and sending it to the Gemini API.
+
+
+
+### 4. Version Control & Code Quality Standards
+
+Establish the rules for maintaining a clean and collaborative GitHub repository.
+
+* **Branching Strategy:** Use feature branches (e.g., `feature/auth-setup`, `bugfix/chat-streaming`) and pull requests rather than pushing directly to `main`.
+* **Commit Conventions:** Adopt clear, standardized commit messages (e.g., `feat: added Gemini text generation endpoint`, `fix: resolved PDF upload timeout`).
+* **Code Reviews & Linting:** Enforce the use of linters (like ESLint or Prettier) and require at least one code review (even if self-reviewed thoroughly) before merging features into the main branch.
+
+### 5. Testing Strategy
+
+Define how you will ensure the application works correctly during active development.
+
+* **Unit Testing:** Write tests for critical utility functions, such as the module that formats the system prompts or handles database queries.
+* **Integration Testing:** Test the API endpoints using tools like Postman or Insomnia to ensure the backend properly communicates with the Gemini API.
+* **Edge Case Handling:** Actively test API rate limit responses, unsupported file type uploads, and adversarial prompts designed to break the tutor persona.
+
+### 6. Continuous Integration (CI)
+
+Automate routine tasks to streamline development.
+
+* **GitHub Actions:** Set up a CI pipeline that automatically runs your linter and unit tests every time code is pushed or a Pull Request is opened.
+* **Automated Builds:** Ensure the build process succeeds in the CI environment before allowing any merges to the production branch.
