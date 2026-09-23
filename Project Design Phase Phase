@@ -1,1 +1,27 @@
+## 1. System Architecture & Boundaries
 
+* **System Overview:** EduGenie operates via a client-server architecture. The system boundary encompasses the frontend web application, the backend API gateway, a managed database, and the Google Gemini cloud infrastructure.
+* **AI Integration Layer:** The backend communicates with Google's servers using the **Interactions API**, which is the standardized interface as of 2026 for building conversational agents and managing complex workflows.
+* **Model Selection:**
+* **Gemini 3.8 Flash:** Deployed for high-throughput, low-latency conversational routing, text generation, and fast quiz generation.
+* **Gemini 3.1 Pro:** Utilized for heavy multimodal tasks, including processing uploaded lecture PDFs, parsing handwritten notes, and analyzing complex scientific diagrams.
+
+
+* **Pedagogical Engine:** The system leverages Google's **LearnLM** capabilities—which are natively infused into the latest Gemini models—to enforce strict educational guardrails. This ensures the AI acts as a reliable Socratic tutor designed to boost learning outcomes rather than simply generating direct answers.
+
+## 2. Interface Contracts & Components
+
+* **Client Application (Frontend):** Built with modern web frameworks (e.g., React or Vue). It handles state management, user inputs (text and file payloads), and seamlessly streams real-time responses from the AI.
+* **API Gateway (Backend):** Serves as a secure proxy (e.g., Node.js/Express) that formats user requests, manages API rate limiting, and securely stores the Gemini API keys away from the client environment.
+* **Context & Prompt Manager:** A dedicated backend component that processes raw multimodal inputs, injects conversation history, and prepends system-level prompts to maintain the AI's "tutor" persona.
+
+## 3. Data Ownership & Lifecycle
+
+* **User & Session Records:** User profiles, academic preferences, and chat histories are stored in a NoSQL database (e.g., MongoDB or Firebase) to maintain long-term learning context.
+* **File Handling & Privacy:** Uploaded study materials (PDFs, images) are temporarily stored in a cloud bucket for processing. To ensure strict data privacy, these files have a defined lifecycle and are purged upon session termination or after a 24-hour expiration window.
+
+## 4. Security Controls & Deployment Strategy
+
+* **Authentication & Access:** Secure login via OAuth 2.0 (Google/GitHub) ensures that user data and chat sessions are strictly isolated.
+* **Prompt Injection Mitigation:** System-level safeguards filter user queries to prevent adversarial prompts from breaking the AI out of its educational constraints.
+* **Deployment Pipeline:** Source code is managed on GitHub, utilizing GitHub Actions for Continuous Integration/Continuous Deployment (CI/CD). This pipeline automates testing and facilitates seamless deployment to cloud hosts (e.g., Vercel and Render), complete with predefined rollback plans to mitigate production outages.
